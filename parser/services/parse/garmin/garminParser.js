@@ -14,8 +14,12 @@ class garminParser extends parser {
         path.resolve(this.baseDir, this.rawRelativePath, this.fileName)
       )
     );
+    // sometimes garmin metrics skip data
     for (let index = 0; index < rawData.activityDetailMetrics.length; index += 1) {
-      parsedData.push(rawData.activityDetailMetrics[index].metrics[5]);
+      parsedData.push(
+        [rawData.activityDetailMetrics[index].metrics[0],
+          rawData.activityDetailMetrics[index].metrics[5]]
+      );
     }
 
     // saved parsed data
